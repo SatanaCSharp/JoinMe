@@ -3,3 +3,4 @@
 <link rel="stylesheet" href="{{asset('css/admin/header.css')}}">
 <link rel="stylesheet" href="{{asset('css/admin/sidebar.css')}}">
 <link rel="stylesheet" href="{{asset('css/admin/footer.css')}}">
+<link rel="stylesheet" href="{{asset('css/admin/content.css')}}">

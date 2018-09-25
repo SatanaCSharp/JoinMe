@@ -1,8 +1,8 @@
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+<div class="left-sidebar">
+    <ul>
+        <li><a href="#"><i class="material-icons">desktop_mac</i>       Dashboard</a></li>
+        <li><a href="#"><i class="material-icons">event_note</i>        Events</a></li>
+        <li><a href="#"><i class="material-icons">people_outline</i>    Users</a></li>
+        <li><a href="#"><i class="material-icons">person_pin_circle</i> Permissions</a></li>
+    </ul>
 </div>
