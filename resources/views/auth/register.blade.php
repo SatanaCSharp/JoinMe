@@ -51,7 +51,7 @@
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Country is required">
                         <span class="label-input100">Your country</span>
                         <input class="input100 {{ $errors->has('country') ? ' is-invalid' : '' }}" type="text"
-                               name="country" placeholder="Enter City" value="{{ old('country') }}" required>
+                               name="country" placeholder="Enter country" value="{{ old('country') }}" required>
                         <span class="focus-input100"></span>
 
                         @if ($errors->has('country'))
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Phone number is required">
-                        <span class="label-input100">Your city</span>
+                        <span class="label-input100">Phone number</span>
                         <input class="input100 {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text"
                                name="city" placeholder="Enter phone number e.g  +38(066) 666 9999"
                                value="{{ old('phone_number') }}" required>
