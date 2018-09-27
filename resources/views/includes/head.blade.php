@@ -7,3 +7,4 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 <link rel="stylesheet" type="text/css" href="{{asset('css/auth/util.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/auth/main.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/auth/avatarPreview.css')}}">
