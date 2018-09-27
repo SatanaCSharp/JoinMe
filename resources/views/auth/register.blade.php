@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title','SignUp')
 @section('content')
+
+
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -16,9 +18,9 @@
                     @csrf
 
                     {{--<div class="wrap-input100 validate-input m-b-26" data-validate="Avatar is required">--}}
-                        {{--<span class="label-input100">Avatar</span>--}}
-                        {{--<input type="file" name="image" placeholder="Enter first name" value="{{ old('image') }}"--}}
-                               {{--required>--}}
+                    {{--<span class="label-input100">Avatar</span>--}}
+                    {{--<input type="file" name="image" placeholder="Enter first name" value="{{ old('image') }}"--}}
+                    {{--required>--}}
                     {{--</div>--}}
 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="First name is required">
@@ -48,24 +50,10 @@
 
                     </div>
 
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Country is required">
-                        <span class="label-input100">Your country</span>
-                        <input class="input100 {{ $errors->has('country') ? ' is-invalid' : '' }}" type="text"
-                               name="country" placeholder="Enter country" value="{{ old('country') }}" required>
-                        <span class="focus-input100"></span>
-
-                        @if ($errors->has('country'))
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('country') }}</strong>
-                                    </span>
-                        @endif
-
-                    </div>
-
                     <div class="wrap-input100 validate-input m-b-26" data-validate="City is required">
                         <span class="label-input100">Your city</span>
-                        <input class="input100 {{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" name="city"
-                               placeholder="Enter City" value="{{ old('city') }}" required>
+                        <input class="input100 {{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" id="city" name="city"
+                               placeholder="Enter City" value="{{ old('city') }}" autocomplete="on" required>
                         <span class="focus-input100"></span>
 
                         @if ($errors->has('city'))
@@ -73,7 +61,6 @@
                                         <strong>{{ $errors->first('city') }}</strong>
                                     </span>
                         @endif
-
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Phone number is required">
@@ -146,4 +133,30 @@
             </div>
         </div>
     </div>
+    <script>
+        var autocomplete;
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),
+                {
+                    types: ['(cities)']
+                });
+        }
+        function geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var geolocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    var circle = new google.maps.Circle({
+                        center: geolocation,
+                        radius: position.coords.accuracy
+                    });
+                    autocomplete.setBounds(circle.getBounds());
+                });
+            }
+            console.log(autocomplete);
+        }
+    </script>
+
 @endsection
