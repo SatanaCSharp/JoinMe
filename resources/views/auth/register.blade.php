@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('title','SignUp')
 @section('content')
-
-
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -19,12 +17,11 @@
 
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type='file' id="imageUpload" name="image" accept=".png, .jpg, .jpeg" />
+                            <input type='file' id="imageUpload" name="image" accept=".png, .jpg, .jpeg"/>
                             <label for="imageUpload"></label>
                         </div>
                         <div class="avatar-preview">
-                            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
-                            </div>
+                            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);"></div>
                         </div>
                     </div>
                     <div class="wrap-input100 validate-input m-b-26" data-validate="First name is required">
@@ -56,8 +53,8 @@
 
                     <div class="wrap-input100 validate-input m-b-26" data-validate="City is required">
                         <span class="label-input100">Your city</span>
-                        <input class="input100 {{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" id="city" name="city"
-                               placeholder="Enter City" value="{{ old('city') }}" autocomplete="on" required>
+                        <input class="input100 {{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" id="city"
+                               name="city" placeholder="Enter City" value="{{ old('city') }}" autocomplete="on" required>
                         <span class="focus-input100"></span>
 
                         @if ($errors->has('city'))
@@ -70,8 +67,8 @@
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Phone number is required">
                         <span class="label-input100">Phone number</span>
                         <input class="input100 {{ $errors->has('phone_number') ? ' is-invalid' : '' }}" type="text"
-                               name="city" placeholder="Enter phone number e.g  +38(066) 666 9999"
-                               value="{{ old('phone_number') }}" required>
+                               name="phone_number" placeholder="Enter phone number e.g  +38(066) 666 9999"
+                              min="14" max="20" value="{{ old('phone_number') }}" required>
                         <span class="focus-input100"></span>
 
                         @if ($errors->has('city'))
