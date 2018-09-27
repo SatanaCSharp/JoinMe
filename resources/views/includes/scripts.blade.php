@@ -3,3 +3,5 @@
 <script src="{{asset('js/auth/main.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeRA7Jo9aBo7E7hrK-XSquHBSKbbkoNuo&libraries=places&callback=initAutocomplete"
         async defer></script>
+<script src="{{asset('js/auth/autocomplete.js')}}"></script>
+<script src="{{asset('js/auth/avatarPreview.js')}}"></script>

@@ -17,12 +17,16 @@
                       aria-label="{{ __('Register') }}">
                     @csrf
 
-                    {{--<div class="wrap-input100 validate-input m-b-26" data-validate="Avatar is required">--}}
-                    {{--<span class="label-input100">Avatar</span>--}}
-                    {{--<input type="file" name="image" placeholder="Enter first name" value="{{ old('image') }}"--}}
-                    {{--required>--}}
-                    {{--</div>--}}
-
+                    <div class="avatar-upload">
+                        <div class="avatar-edit">
+                            <input type='file' id="imageUpload" name="image" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                            </div>
+                        </div>
+                    </div>
                     <div class="wrap-input100 validate-input m-b-26" data-validate="First name is required">
                         <span class="label-input100">First name</span>
                         <input class="input100 {{ $errors->has('first_name') ? ' is-invalid' : '' }}" type="text"
@@ -133,30 +137,4 @@
             </div>
         </div>
     </div>
-    <script>
-        var autocomplete;
-        function initAutocomplete() {
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById('city')),
-                {
-                    types: ['(cities)']
-                });
-        }
-        function geolocate() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var geolocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    var circle = new google.maps.Circle({
-                        center: geolocation,
-                        radius: position.coords.accuracy
-                    });
-                    autocomplete.setBounds(circle.getBounds());
-                });
-            }
-            console.log(autocomplete);
-        }
-    </script>
-
 @endsection
