@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
         });
         Schema::table('users',function (Blueprint $table){
-            $table->integer('address_id')->unsigned();
+            $table->integer('address_id')->unsigned()->nullable();
             $table->foreign('address_id')->references('id')->on('addresses');
         });
     }

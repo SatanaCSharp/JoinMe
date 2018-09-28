@@ -15,11 +15,11 @@ class CreateImageTypesTable extends Migration
     {
         Schema::create('image_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('type');
             $table->timestamps();
         });
         Schema::table('images',function (Blueprint $table){
-            $table->integer('image_type_id')->unsigned();
+            $table->integer('image_type_id')->unsigned()->nullable();
             $table->foreign('image_type_id')->references('id')->on('image_types');
         });
     }
