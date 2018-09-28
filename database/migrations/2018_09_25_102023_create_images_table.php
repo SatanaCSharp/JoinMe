@@ -18,9 +18,9 @@ class CreateImagesTable extends Migration
             $table->string('image');
             $table->timestamps();
         });
-        Schema::table('users',function (Blueprint $table){
-            $table->integer('image_id')->unsigned();
-            $table->foreign('image_id')->references('id')->on('images');
+        Schema::table('images',function (Blueprint $table){
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,9 +31,9 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table)
+        Schema::table('images', function($table)
         {
-            $table->dropForeign(['image_id']);
+            $table->dropForeign(['user_id']);
         });
         Schema::dropIfExists('images');
     }
