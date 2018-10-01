@@ -1,0 +1,19 @@
+.card-button__create{
+    font-size: 16px;
+    margin-left: 1%;
+    padding: 10px 14px;
+    border: 2px solid #f96332;
+    border-radius: 50%;
+}
+
+.card-button__create:hover{
+    color: #ffffff;
+    border: 2px solid #f96332;
+    background-color: #f96332;
+}
+.table__empty{
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #f96332;
+}
