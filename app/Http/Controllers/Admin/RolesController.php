@@ -17,10 +17,10 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $perPage = 15;
+        $perPage = 5;
 
-        $roles = Role::orderBy('id','DESC')->paginate($perPage);
-        return view('admin.roles.index',compact('roles'));
+        $roles = Role::orderBy('id', 'DESC')->paginate($perPage);
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -31,91 +31,72 @@ class RolesController extends Controller
     public function create()
     {
         $permissions = Permission::get();
-        return view('admin.roles.create',compact('permissions'));
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-//        $this->validate($request, [
-//            'name' => 'required|unique:roles,name',
-//            'display_name' => 'required',
-//            'description' => 'required',
-//            'permission' => 'required',
-//        ]);
-
-//        dd($request);
-
         $roleInfo = [
-            'name'         => $request->input('name'),
+            'name' => $request->input('name'),
             'display_name' => $request->input('display_name'),
-            'description'  => $request->input('description')
+            'description' => $request->input('description')
         ];
 
         $role = Role::create($roleInfo);
-
         foreach ($request->input('permission') as $item) {
             $role->attachPermission($item);
         }
         return redirect()->route('roles.index')
-            ->with('success','Role created successfully');
+            ->with('success', 'Role created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $role = Role::find($id);
-        $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
-            ->where("permission_role.role_id",$id)
-            ->get();
-
-
-        return view('roles.show',compact('role','rolePermissions'));
+        return view('roles.show', compact('role', 'rolePermissions'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->lists('permission_role.permission_id','permission_role.permission_id');
-
-
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        $permissions = Permission::get();
+        return view('admin.roles.edit', ['role' => $role, 'permissions' => $permissions,]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
+        dd($request);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

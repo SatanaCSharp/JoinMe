@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('title','Create Role')
 @section('content')
+    @include('admin.includes.error')
     <div class="content">
         <div class="row">
             <div class="col-md-8 offset-2">
