@@ -13,12 +13,21 @@
                     <div class="card-body">
                         {!! Form::open(['route' => ['roles.store'],'method' => 'post','class'=>'creation-form']) !!}
 
-                        {{  Form::label('name', 'name', ['class' => 'title'])}}
+                        {{  Form::label('name', 'Name')}}
                         {{  Form::text('name',null, array_merge(['class' => 'form-control'])) }}
-
+                        {{  Form::label('display_name')}}
+                        {!! Form::text('display_name', null, array('class' => 'form-control')) !!}
                         {{  Form::label('description', 'Description')}}
                         {{  Form::text('description',null, array_merge(['class' => 'form-control'])) }}
-                        <br><br><br>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <span class="form__permissions">Permissions:</span>
+                                @foreach($permissions as $permission)
+                                    {{ Form::checkbox('permission[]', $permission->id, false, array('class' => 'checkbox','id'=>'permission-'.$permission->id)) }}
+                                    <label for="{{'permission-'.$permission->id}}">{{ $permission->display_name }}</label>
+                                @endforeach
+                            </div>
+                        </div>
                         {{  Form::submit('Create',['class'=>'btn-create-role'])}}
                         {!! Form::close() !!}
 
