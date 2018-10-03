@@ -49,6 +49,8 @@ class RolesController extends Controller
 //            'permission' => 'required',
 //        ]);
 
+//        dd($request);
+
         $roleInfo = [
             'name'         => $request->input('name'),
             'display_name' => $request->input('display_name'),

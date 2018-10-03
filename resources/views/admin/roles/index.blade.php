@@ -8,7 +8,8 @@
                     <div class="card-header">
                         <h4 class="card-title"> Roles</h4>
                     </div>
-                        <a href="{{route('roles.create')}}" class="card-button__create active"><i class="fas fa-plus"></i></a>
+                    <a href="{{route('roles.create')}}" class="card-button__create active"><i
+                                class="fas fa-plus"></i></a>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
@@ -26,15 +27,21 @@
                                         <td>{{$role->description}}</td>
                                         <td>
                                             <div class="action-buttons">
-                                                <a href="{{route('events.edit',[$role->id])}}" class="btn btn-outline-info">Edit</a>
-                                                {!! Form::open(['method'=>'DELETE', 'route'=>['events.destroy',$role->id]]) !!}
-                                                {{  Form::submit('Delete',['class'=>'btn btn-outline-danger btn-delete-event'])}}
+                                                <a href="{{route('roles.edit',[$role->id])}}"
+                                                   class="action-buttons__button__edit"><i class="fas fa-edit"></i></a>
+
+                                                <a href="{{route('roles.show',[$role->id])}}"
+                                                   class="action-buttons__button__show"><i class="far fa-eye"></i></a>
+
+                                                {!! Form::open(['method'=>'DELETE', 'route'=>['roles.destroy',$role->id]]) !!}
+                                                <button type="submit" class="action-buttons__button__delete"><i
+                                                            class="fas fa-trash-alt"></i></button>
                                                 {!! Form::close(); !!}
                                             </div>
                                         </td>
 
-                                @empty
-                                  <td class="table__empty" colspan="4">There are no roles! </td>
+                                        @empty
+                                            <td class="table__empty" colspan="4">There are no roles!</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
