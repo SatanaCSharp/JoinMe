@@ -18,8 +18,7 @@ class RolesController extends Controller
     public function index()
     {
         $perPage = 5;
-
-        $roles = Role::orderBy('id', 'DESC')->paginate($perPage);
+        $roles = Role::paginate($perPage);
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -42,16 +41,9 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $roleInfo = [
-            'name' => $request->input('name'),
-            'display_name' => $request->input('display_name'),
-            'description' => $request->input('description')
-        ];
-
-        $role = Role::create($roleInfo);
-        foreach ($request->input('permission') as $item) {
-            $role->attachPermission($item);
-        }
+        $roleData = Role::getRoleData($request);
+        $role     = Role::create($roleData);
+        $role->attachPermissionsToRole($request, $role);
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -65,8 +57,9 @@ class RolesController extends Controller
     public function show($id)
     {
         $role = Role::find($id);
-        dd($role);
-        return view('roles.show', compact('role', 'rolePermissions'));
+        $rolePermissions = $role->with('perms')->get();
+//        dd($rolePermissions);
+        return view('admin.roles.show', ['role'=>$role,'rolePermissions' => $rolePermissions]);
     }
 
     /**
@@ -91,7 +84,13 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        $role = Role::find($id);
+        $role->updateRole($request,$role);
+        $role->deletePermission($role);
+        $role->attachPermissionsToRole($request,$role);
+
+        return redirect()->route('roles.index')
+            ->with('success','Role updated successfully');
     }
 
     /**
@@ -102,7 +101,10 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        Role::find($id)->delete();
+        $role = Role::find($id);
+        $role->deleteRole($role);
+        $role->deletePermissions($role);
+
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');
     }
