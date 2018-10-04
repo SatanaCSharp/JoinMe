@@ -18,8 +18,8 @@
                     <p>Users</p>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {{{ (Route::is('roles.index') ? 'class=active' : '') }}}>
+                <a href="{{route('roles.index')}}">
                     <i class="fas fa-user-tag"></i>
                     <p>Roles</p>
                 </a>
