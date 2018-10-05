@@ -44,4 +44,52 @@ class User extends Authenticatable
         return $this->hasMany('App\Event');
     }
 
+    public static function getUserData($request)
+    {
+        return [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+    }
+
+    public function getCity($request)
+    {
+        return [
+            'city' => $request->city
+        ];
+    }
+
+    public function getRoleIds($request)
+    {
+        return [
+            'roles' => $request->roles
+        ];
+    }
+
+    public function getImage($request)
+    {
+        return [
+            'image' => $request->image
+        ];
+    }
+
+    public function setRole($roles, $user)
+    {
+        foreach ($roles as $role) {
+            $user->attachRole($role);
+        }
+    }
+
+    public function storeImage($image)
+    {
+        //TODO: store image to local Storage and return path;
+    }
+
+    public function setImage($image)
+    {
+        //TODO: store image to local Storage and return path;
+    }
 }

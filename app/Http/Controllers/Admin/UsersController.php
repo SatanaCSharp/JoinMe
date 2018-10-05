@@ -41,7 +41,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+
       dd($request);
+        $user = User::create(User::getUserData($request));
+        $user->setRole($user->getRoleIds($request));
+
     }
 
     /**
