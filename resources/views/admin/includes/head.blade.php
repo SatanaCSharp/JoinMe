@@ -5,3 +5,4 @@
 <link rel="stylesheet" href="{{asset('css/admin/now-ui-dashboard.css')}}">
 <link rel="stylesheet" href="{{asset('css/admin/sidebar.css')}}">
 <link rel="stylesheet" href="{{asset('css/admin/content.css')}}">
+<link rel="stylesheet" href="{{asset('css/admin/avatarPreview.css')}}">
