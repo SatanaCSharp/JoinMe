@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Address;
+use App\Image;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
         $perPage = 10;
-        $users = User::paginate($perPage);
+        $users = User::with('address')->with('roles')->paginate($perPage);
         return view('admin.users.index', ['users' => $users]);
     }
 
@@ -29,8 +31,8 @@ class UsersController extends Controller
     public function create()
     {
         $perPage = 20;
-        $roles  = Role::paginate($perPage);
-        return view('admin.users.create',['roles'=>$roles]);
+        $roles = Role::paginate($perPage);
+        return view('admin.users.create', ['roles' => $roles]);
     }
 
     /**
@@ -41,11 +43,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
-      dd($request);
         $user = User::create(User::getUserData($request));
-        $user->setRole($user->getRoleIds($request));
-
+        $user->setRole($user->getRoleIds($request), $user);
+        $user->setCity($user, $user->getCity($request));
+        return redirect()->route('users.index');
     }
 
     /**
@@ -56,7 +57,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id)->load(['address','roles']);
+//        dd($user);
+        return view('admin.users.show', ['user' => $user]);
     }
 
     /**
@@ -67,7 +70,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

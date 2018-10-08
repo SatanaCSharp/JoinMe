@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
@@ -44,6 +45,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Event');
     }
 
+    public static function encryptPassword($password)
+    {
+        return Hash::make($password);
+    }
+
     public static function getUserData($request)
     {
         return [
@@ -51,7 +57,7 @@ class User extends Authenticatable
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => self::encryptPassword($request->password)
         ];
     }
 
@@ -69,27 +75,15 @@ class User extends Authenticatable
         ];
     }
 
-    public function getImage($request)
-    {
-        return [
-            'image' => $request->image
-        ];
-    }
-
     public function setRole($roles, $user)
     {
         foreach ($roles as $role) {
-            $user->attachRole($role);
+            $user->roles()->attach($role);
         }
     }
 
-    public function storeImage($image)
+    public function setCity($user, $city)
     {
-        //TODO: store image to local Storage and return path;
-    }
-
-    public function setImage($image)
-    {
-        //TODO: store image to local Storage and return path;
+        Address::create($city)->user()->save($user);
     }
 }

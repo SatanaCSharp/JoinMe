@@ -189,3 +189,47 @@ label:hover:before {
 input.key {
     font-family: 'password';
 }
+.card-body__pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.table__role {
+    padding: 5px 5px;
+    margin-left: 5px;
+    background-color: #228e2f;
+    border-radius: 50px;
+    color: #fff;
+}
+.card-header__user-name {
+    color: #f96332;
+    font-family: initial;
+    font-weight: 600;
+}
+.card-body__email, .card-body__phone-number,.card-body__city{
+    display: inline-flex;
+    font-size: 16px;
+    font-style: italic;
+    color: #aaa;
+    font-family: unset;
+    font-weight: 400;
+}
+.card-body__info {
+    display: flex;
+    flex-direction: column;
+}
+.card-body__assign-item {
+    color: #f96332;
+    font-size: 16px;
+    font-family: initial;
+    font-weight: 600;
+}
+.card-body__email {
+    margin-left: 8%;
+}
+.card-body__phone-number {
+    margin-left: 2%;
+}
+.card-body__city {
+    margin-left: 9%;
+}

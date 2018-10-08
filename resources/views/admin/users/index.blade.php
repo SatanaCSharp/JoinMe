@@ -32,8 +32,14 @@
                                         <td>{{$user->last_name}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->phone_number}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$user->address['city']}}</td>
+                                        <td>
+                                            @forelse($user->roles as $role)
+                                              <span class="table__role"> <i class="far fa-check-circle"></i> {{$role->display_name}}</span>
+                                            @empty
+
+                                            @endforelse
+                                        </td>
                                         <td>
                                             <div class="action-buttons__user-action">
                                                 <div class="action-buttons">
@@ -61,8 +67,10 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card-body__pagination">{{ $users->links() }}</div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
