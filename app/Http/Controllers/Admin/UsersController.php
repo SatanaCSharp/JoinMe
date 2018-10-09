@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function index()
     {
         $perPage = 10;
-        $users = User::with('address')->with('roles')->paginate($perPage);
+        $users = User::with(['address', 'roles'])->paginate($perPage);
         return view('admin.users.index', ['users' => $users]);
     }
 
@@ -57,7 +57,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id)->load(['address','roles']);
+        $user = User::find($id)->load(['address', 'roles']);
         return view('admin.users.show', ['user' => $user]);
     }
 
@@ -69,7 +69,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-
+        $user = User::find($id)->load(['address', 'roles']);
+        $roles = Role::get();
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     /**
@@ -81,7 +83,13 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->updateUser($request, $user);
+        $user->updateCity($user->getCity($request), $user);
+        $user->updateRoles($user->getRoleIds($request), $user);
+
+        return redirect()->route('users.index');
     }
 
     /**

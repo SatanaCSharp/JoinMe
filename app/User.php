@@ -45,6 +45,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Event');
     }
 
+
     public static function encryptPassword($password)
     {
         return Hash::make($password);
@@ -86,4 +87,38 @@ class User extends Authenticatable
     {
         Address::create($city)->user()->save($user);
     }
+
+    private function getUpdatedUserData($request, $user)
+    {
+        return [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password' => $user->password
+        ];
+    }
+
+    public function updateUser($request, $user)
+    {
+        $user->update($this->getUpdatedUserData($request, $user));
+    }
+
+    public function updateCity($city, $user)
+    {
+        Address::updateOrCreate($city)->user()->save($user);
+    }
+
+    private function unsetRoles($user)
+    {
+        $user->roles()->detach();
+    }
+
+    public function updateRoles($roles, $user)
+    {
+        $this->unsetRoles($user);
+        $user->setRole($roles, $user);
+    }
+
+
 }
