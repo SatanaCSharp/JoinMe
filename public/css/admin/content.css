@@ -1,4 +1,4 @@
-.card-button__create{
+.card-button__create {
     font-size: 16px;
     margin-left: 1%;
     padding: 10px 14px;
@@ -6,25 +6,27 @@
     border-radius: 50%;
 }
 
-.card-button__create:hover{
+.card-button__create:hover {
     color: #ffffff;
     border: 2px solid #f96332;
     background-color: #f96332;
 }
-.table__empty{
+
+.table__empty {
     font-size: 20px;
     text-align: center;
     font-weight: bold;
     color: #f96332;
 }
 
-.form__permissions{
+.form__permissions {
     font-size: 20px;
     text-align: center;
     font-weight: 500;
     margin-top: 15px;
     color: #7d7d7d;
 }
+
 .btn-create-role {
     width: 50%;
     margin-left: 25%;
@@ -36,10 +38,12 @@
     font-size: 18px;
     font-weight: 500;
 }
-.btn-create-role:hover{
+
+.btn-create-role:hover {
     cursor: pointer;
     background-color: #e26034;
 }
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -50,6 +54,7 @@
     position: absolute;
     left: -9999px;
 }
+
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
     position: relative;
@@ -57,88 +62,174 @@
     cursor: pointer;
     padding-bottom: 10px;
 }
+
 [type="checkbox"]:not(:checked) + label:before,
 [type="checkbox"]:checked + label:before {
     content: '';
     position: absolute;
-    left: 0; top: 0;
-    width: 1.25em; height: 1.25em;
+    left: 0;
+    top: 0;
+    width: 1.25em;
+    height: 1.25em;
     border: 2px solid #ccc;
     background: #fff;
     border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
 }
+
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
     content: '\2713\0020';
     position: absolute;
-    top: .15em; left: .22em;
+    top: .15em;
+    left: .22em;
     font-size: 1.3em;
     line-height: 0.8;
     color: #f96332;
     transition: all .2s;
 }
+
 [type="checkbox"]:not(:checked) + label:after {
     opacity: 0;
     transform: scale(0);
 }
+
 [type="checkbox"]:checked + label:after {
     opacity: 1;
     transform: scale(1);
 }
+
 [type="checkbox"]:disabled:not(:checked) + label:before,
 [type="checkbox"]:disabled:checked + label:before {
     box-shadow: none;
     border-color: #bbb;
     background-color: #ddd;
 }
+
 [type="checkbox"]:disabled:checked + label:after {
     color: #999;
 }
+
 [type="checkbox"]:disabled + label {
     color: #aaa;
 }
+
 label:hover:before {
     border: 2px solid #4778d9;
 }
-.action-buttons{
+
+.action-buttons {
     display: flex;
     font-size: 18px;
     justify-content: space-between;
     width: 50%;
 }
 
-.action-buttons__button__delete{
+.action-buttons__button__delete {
     background-color: transparent;
     border: none;
     color: #f96332;
 }
 
-.action-buttons__button__show:hover{
+.action-buttons__button__show:hover {
     color: #6662f9;
 }
 
-.action-buttons__button__delete:hover{
+.action-buttons__button__delete:hover {
     color: #ca0007;
     cursor: pointer;
 }
-.action-buttons__button__edit:hover{
+
+.action-buttons__button__edit:hover {
     color: #bfc134;
 }
+
 .card-header__role-name {
     color: #f96332;
     font-family: initial;
     font-weight: 600;
 }
-.card-body__description-title,.card-body__description {
+
+.card-body__description-title, .card-body__description {
     font-size: 20px;
     text-align: center;
     font-weight: 500;
     margin-top: 15px;
     color: #7d7d7d;
 }
-.card-body__description{
+
+.card-body__description {
     font-size: 20px;
     font-weight: 300;
     color: #757575;
+}
+
+.action-buttons__user-action .action-buttons {
+    width: auto;
+}
+
+.action-buttons__user-action form {
+    display: inline-flex;
+}
+
+.action-buttons__user-action a {
+    display: inline-flex;
+}
+
+.action-buttons__user-action a:hover {
+    text-decoration: none;
+}
+@font-face {
+    font-family: 'password';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
+
+input.key {
+    font-family: 'password';
+}
+.card-body__pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.table__role {
+    padding: 5px 5px;
+    margin-left: 5px;
+    background-color: #23476f;
+    border-radius: 50px;
+    color: #fff;
+}
+.card-header__user-name {
+    color: #f96332;
+    font-family: initial;
+    font-weight: 600;
+}
+.card-body__email, .card-body__phone-number,.card-body__city{
+    display: inline-flex;
+    font-size: 16px;
+    font-style: italic;
+    color: #aaa;
+    font-family: unset;
+    font-weight: 400;
+}
+.card-body__info {
+    display: flex;
+    flex-direction: column;
+}
+.card-body__assign-item {
+    color: #f96332;
+    font-size: 16px;
+    font-family: initial;
+    font-weight: 600;
+}
+.card-body__email {
+    margin-left: 8%;
+}
+.card-body__phone-number {
+    margin-left: 2%;
+}
+.card-body__city {
+    margin-left: 9%;
 }

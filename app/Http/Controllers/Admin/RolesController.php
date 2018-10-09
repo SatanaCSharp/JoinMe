@@ -58,7 +58,6 @@ class RolesController extends Controller
     {
         $role = Role::find($id);
         $rolePermissions = $role->with('perms')->get();
-//        dd($rolePermissions);
         return view('admin.roles.show', ['role'=>$role,'rolePermissions' => $rolePermissions]);
     }
 

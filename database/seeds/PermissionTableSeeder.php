@@ -36,23 +36,23 @@ class PermissionTableSeeder extends Seeder
 
             [
                 'name' => 'event-list',
-                'display_name' => 'Display Item Listing',
-                'description' => 'See only Listing Of Item'
+                'display_name' => 'Display Event Listing',
+                'description' => 'See only Listing Of event'
             ],
             [
                 'name' => 'event-create',
-                'display_name' => 'Create Item',
-                'description' => 'Create New Item'
+                'display_name' => 'Create event',
+                'description' => 'Create New event'
             ],
             [
                 'name' => 'event-edit',
-                'display_name' => 'Edit Item',
-                'description' => 'Edit Item'
+                'display_name' => 'Edit event',
+                'description' => 'Edit event'
             ],
             [
                 'name' => 'event-delete',
-                'display_name' => 'Delete Item',
-                'description' => 'Delete Item'
+                'display_name' => 'Delete event',
+                'description' => 'Delete event'
             ]
         ];
 

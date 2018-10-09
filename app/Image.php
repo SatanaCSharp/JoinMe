@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Image extends BootUserModel
 {
@@ -19,9 +20,20 @@ class Image extends BootUserModel
         return $this->belongsTo('App\User');
     }
 
-    public function saveImageTypeAvatar(self $model, $image)
+
+    public function getPathStoredImage($image)
+    {
+        return ['image' => Storage::disk('local')->putFile('images', $image)];
+    }
+
+    public function setProfileImage(self $image, $imagePath,$user)
+    {
+        return $image->create($imagePath)->associate($user)->save();
+    }
+
+    public function setTypeAvatar(self $image)
     {
         $imageType = ImageType::find(ImageType::AVATAR);
-        return $model->create($image)->imageType()->save($imageType);
+        return $image->imageType()->associate($imageType)->save();
     }
 }
