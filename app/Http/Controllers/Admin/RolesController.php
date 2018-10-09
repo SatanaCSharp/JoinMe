@@ -41,9 +41,9 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $roleData = Role::getRoleData($request);
-        $role     = Role::create($roleData);
-        $role->attachPermissionsToRole($request, $role);
+//        $roleData = Role::getRoleData($request);
+//        $role     = Role::create($roleData);
+//        $role->attachPermissionsToRole($request, $role);
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -84,9 +84,9 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
         $role = Role::find($id);
-        $role->updateRole($request,$role);
-        $role->deletePermission($role);
-        $role->attachPermissionsToRole($request,$role);
+//        $role->updateRole($request,$role);
+//        $role->deletePermission($role);
+//        $role->attachPermissionsToRole($request,$role);
 
         return redirect()->route('roles.index')
             ->with('success','Role updated successfully');
@@ -101,8 +101,8 @@ class RolesController extends Controller
     public function destroy($id)
     {
         $role = Role::find($id);
-        $role->deleteRole($role);
-        $role->deletePermissions($role);
+//        $role->deleteRole($role);
+//        $role->deletePermissions($role);
 
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');

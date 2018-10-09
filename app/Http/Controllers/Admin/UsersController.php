@@ -43,9 +43,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create(User::getUserData($request));
-        $user->setRole($user->getRoleIds($request), $user);
-        $user->setCity($user, $user->getCity($request));
+//        $user = User::create(User::getUserData($request));
+//        $user->setRole($user->getRoles($request), $user);
+//        $user->setCity($user, $user->getCity($request));
+//
         return redirect()->route('users.index');
     }
 
@@ -83,11 +84,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-
-        $user->updateUser($request, $user);
-        $user->updateCity($user->getCity($request), $user);
-        $user->updateRoles($user->getRoleIds($request), $user);
+//        $user = User::find($id);
+//
+//        $user->updateUser($request, $user);
+//        $user->updateCity($user->getCity($request), $user);
+//        $user->updateRoles($user->getRoles($request), $user);
 
         return redirect()->route('users.index');
     }
@@ -100,9 +101,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        Address::deleteAddress($user->address_id);
+//        $user = User::find($id);
+//        $user->delete();
+//        Address::deleteAddress($user->address_id);
         return redirect()->route('users.index');
     }
 }

@@ -62,32 +62,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function getCity($request)
-    {
-        return [
-            'city' => $request->city
-        ];
-    }
-
-    public function getRoleIds($request)
-    {
-        return [
-            'roles' => $request->roles
-        ];
-    }
-
-    public function setRole($roles, $user)
-    {
-        foreach ($roles as $role) {
-            $user->roles()->attach($role);
-        }
-    }
-
-    public function setCity($user, $city)
-    {
-        Address::create($city)->user()->save($user);
-    }
-
     private function getUpdatedUserData($request, $user)
     {
         return [
@@ -104,21 +78,7 @@ class User extends Authenticatable
         $user->update($this->getUpdatedUserData($request, $user));
     }
 
-    public function updateCity($city, $user)
-    {
-        Address::updateOrCreate($city)->user()->save($user);
-    }
 
-    private function unsetRoles($user)
-    {
-        $user->roles()->detach();
-    }
-
-    public function updateRoles($roles, $user)
-    {
-        $this->unsetRoles($user);
-        $user->setRole($roles, $user);
-    }
 
 
 }

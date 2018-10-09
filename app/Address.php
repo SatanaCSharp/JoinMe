@@ -13,8 +13,25 @@ class Address extends Model
         return $this->hasMany('App\User');
     }
 
-    public static function deleteAddress($id)
+    private function getCity($request)
+    {
+        return [
+            'city' => $request->city
+        ];
+    }
+
+    public function deleteAddress($id)
     {
        return self::find($id)->delete();
     }
+
+    public function setCity($user, $request)
+    {
+        self::create($this->getCity($request))->user()->save($user);
+    }
+    public function updateCity($user, $request)
+    {
+        self::updateOrCreate($this->getCity($request))->user()->save($user);
+    }
+
 }

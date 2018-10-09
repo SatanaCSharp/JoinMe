@@ -11,7 +11,7 @@ class Role extends EntrustRole
     protected $fillable = ['name', 'display_name', 'description'];
 
 
-    public static function getRoleData($request)
+    private function getRoleData($request)
     {
         return [
             'name' => $request->input('name'),
@@ -20,21 +20,9 @@ class Role extends EntrustRole
         ];
     }
 
-    public function attachPermissionsToRole(Request $request, Role $role)
-    {
-        foreach ($request->input('permission') as $permission) {
-            $role->attachPermission($permission);
-        }
-    }
-
     public function updateRole($request, $role)
     {
-        $role->update(Role::getRoleData($request));
-    }
-
-    public function deletePermission($role)
-    {
-        $role->perms()->detach();
+        $role->update($this->getRoleData($request));
     }
 
     public function deleteRole($role)
@@ -42,9 +30,30 @@ class Role extends EntrustRole
         $role->delete();
     }
 
-    public function deletePermissions($role)
+    private function getRolesOfUser($request)
     {
-        $role->perms()->sync([]);
-        $role->forceDelete();
+        return [
+            'roles' => $request->roles
+        ];
     }
+
+    private function setRolesToUser($request, $user)
+    {
+        foreach ($this->getRolesOfUser($request) as $role) {
+            $user->roles()->attach($role);
+        }
+    }
+
+    private function detachRolesOfUser($user)
+    {
+        $user->roles()->detach();
+    }
+
+    public function updateRolesOfUser($request, $user)
+    {
+        $this->detachRolesOfUser($user);
+        $this->setRolesToUser($request, $user);
+    }
+
+
 }
