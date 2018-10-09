@@ -58,7 +58,6 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id)->load(['address','roles']);
-//        dd($user);
         return view('admin.users.show', ['user' => $user]);
     }
 
@@ -93,6 +92,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        Address::deleteAddress($user->address_id);
+        return redirect()->route('users.index');
     }
 }

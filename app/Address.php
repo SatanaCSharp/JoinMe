@@ -13,4 +13,8 @@ class Address extends Model
         return $this->hasMany('App\User');
     }
 
+    public static function deleteAddress($id)
+    {
+       return self::find($id)->delete();
+    }
 }
