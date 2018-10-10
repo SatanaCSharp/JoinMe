@@ -19,11 +19,9 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <span class="form__permissions">Permissions:</span>
-                                @foreach($rolePermissions as $rolePermission)
-                                    @foreach($rolePermission->perms as $permission )
+                                @foreach($role->perms as $permission)
                                         {{ Form::checkbox('permission[]', $permission->id, true, ['class' => 'checkbox','id'=>'permission-'.$permission->id,'disabled' => 'disabled']) }}
                                         <label for="{{'permission-'.$permission->id}}">{{ $permission->display_name }}</label>
-                                    @endforeach
                                 @endforeach
                             </div>
                         </div>

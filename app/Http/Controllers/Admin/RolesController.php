@@ -41,9 +41,10 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $roleData = Role::getRoleData($request);
-        $role     = Role::create($roleData);
-        $role->attachPermissionsToRole($request, $role);
+        $role = new Role();
+        $permission = new Permission();
+        $setRole = $role->setRole($request);
+        $permission->attachPermissionsToRole($request, $setRole);
         return redirect()->route('roles.index')
             ->with('success', 'Role created successfully');
     }
@@ -56,9 +57,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $role = Role::find($id);
-        $rolePermissions = $role->with('perms')->get();
-        return view('admin.roles.show', ['role'=>$role,'rolePermissions' => $rolePermissions]);
+        $role = Role::find($id)->load('perms');
+        return view('admin.roles.show', ['role' => $role,]);
     }
 
     /**
@@ -69,7 +69,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::find($id);
+        $role = Role::find($id)->load('perms');
         $permissions = Permission::get();
         return view('admin.roles.edit', ['role' => $role, 'permissions' => $permissions,]);
     }
@@ -83,13 +83,13 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
-        $role->updateRole($request,$role);
-        $role->deletePermission($role);
-        $role->attachPermissionsToRole($request,$role);
 
+        $role = Role::find($id);
+        $permission = new Permission();
+        $role->updateRole($request, $role);
+        $permission->updateRolePermissions($request, $role);
         return redirect()->route('roles.index')
-            ->with('success','Role updated successfully');
+            ->with('success', 'Role updated successfully');
     }
 
     /**
@@ -101,9 +101,9 @@ class RolesController extends Controller
     public function destroy($id)
     {
         $role = Role::find($id);
+        $permission = new Permission();
         $role->deleteRole($role);
-        $role->deletePermissions($role);
-
+        $permission->deleteAllPermissions($role);
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');
     }

@@ -22,7 +22,7 @@
                             <span class="card-body__assign-item"> City:
                             <span class="card-body__city">
                                     @isset($user->address->city)
-                                       {{$user->address->city }}
+                                    {{$user->address->city }}
                                 @endisset
                             </span>
                             </span>
