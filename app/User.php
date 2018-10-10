@@ -45,20 +45,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Event');
     }
 
-
-    public static function encryptPassword($password)
-    {
-        return Hash::make($password);
-    }
-
-    public static function getUserData($request)
+    private function getUserData($request)
     {
         return [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'password' => self::encryptPassword($request->password)
+            'password' => Hash::make($request->password)
         ];
     }
 
@@ -78,7 +72,9 @@ class User extends Authenticatable
         $user->update($this->getUpdatedUserData($request, $user));
     }
 
-
-
+    public function setUser($request)
+    {
+        return self::create($this->getUserData($request));
+    }
 
 }

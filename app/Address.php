@@ -22,14 +22,17 @@ class Address extends Model
 
     public function deleteAddress($id)
     {
-       return self::find($id)->delete();
+        if(isset($id)){
+            return self::find($id)->delete();
+        }
     }
 
-    public function setCity($user, $request)
+    public function setCity($request, $user)
     {
         self::create($this->getCity($request))->user()->save($user);
     }
-    public function updateCity($user, $request)
+
+    public function updateCity($request,$user)
     {
         self::updateOrCreate($this->getCity($request))->user()->save($user);
     }

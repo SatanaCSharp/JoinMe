@@ -20,6 +20,12 @@ class Role extends EntrustRole
         ];
     }
 
+    public function setRole($request)
+    {
+     return self::create($this->getRoleData($request));
+    }
+
+
     public function updateRole($request, $role)
     {
         $role->update($this->getRoleData($request));
@@ -37,7 +43,7 @@ class Role extends EntrustRole
         ];
     }
 
-    private function setRolesToUser($request, $user)
+    public function setRolesToUser($request, $user)
     {
         foreach ($this->getRolesOfUser($request) as $role) {
             $user->roles()->attach($role);

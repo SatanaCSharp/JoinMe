@@ -30,8 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $perPage = 20;
-        $roles = Role::paginate($perPage);
+        $roles = Role::get();
         return view('admin.users.create', ['roles' => $roles]);
     }
 
@@ -43,10 +42,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-//        $user = User::create(User::getUserData($request));
-//        $user->setRole($user->getRoles($request), $user);
-//        $user->setCity($user, $user->getCity($request));
-//
+        $user = new User();
+        $role = new Role();
+        $address = new Address();
+        $setUser = $user->setUser($request);
+        $role->setRolesToUser($request, $setUser);
+        $address->setCity($request, $setUser);
         return redirect()->route('users.index');
     }
 
@@ -84,12 +85,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        $user = User::find($id);
-//
-//        $user->updateUser($request, $user);
-//        $user->updateCity($user->getCity($request), $user);
-//        $user->updateRoles($user->getRoles($request), $user);
-
+        $user = User::find($id);
+        $role = new Role();
+        $address = new Address();
+        $user->updateUser($request, $user);
+        $address->updateCity($request, $user);
+        $role->updateRolesOfUser($request, $user);
         return redirect()->route('users.index');
     }
 
@@ -101,9 +102,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-//        $user = User::find($id);
-//        $user->delete();
-//        Address::deleteAddress($user->address_id);
+        $user = User::find($id);
+        $address = new Address();
+        $user->delete();
+        $address->deleteAddress($user->address_id);
         return redirect()->route('users.index');
     }
 }
