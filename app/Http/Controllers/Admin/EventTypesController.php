@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EventsController extends Controller
+class EventTypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('admin.events.index');
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        //
     }
 
     /**

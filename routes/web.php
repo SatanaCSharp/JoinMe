@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::resource('/roles','RolesController');
     Route::resource('/users','UsersController');
+    Route::resource('/events','EventsController');
 });

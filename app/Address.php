@@ -13,6 +13,12 @@ class Address extends Model
         return $this->hasMany('App\User');
     }
 
+    public function event()
+    {
+        return $this->hasOne('App\Address');
+    }
+
+
     private function getCity($request)
     {
         return [
@@ -22,7 +28,7 @@ class Address extends Model
 
     public function deleteAddress($id)
     {
-        if(isset($id)){
+        if (isset($id)) {
             return self::find($id)->delete();
         }
     }
@@ -32,7 +38,7 @@ class Address extends Model
         self::create($this->getCity($request))->user()->save($user);
     }
 
-    public function updateCity($request,$user)
+    public function updateCity($request, $user)
     {
         self::updateOrCreate($this->getCity($request))->user()->save($user);
     }
