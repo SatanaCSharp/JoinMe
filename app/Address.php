@@ -15,14 +15,14 @@ class Address extends Model
 
     public function event()
     {
-        return $this->hasOne('App\Address');
+        return $this->hasOne('App\Event');
     }
 
-
-    private function getCity($request)
+    private function getAddress($request)
     {
         return [
-            'city' => $request->city
+            'city' => $request->city,
+            'place' => $request->place
         ];
     }
 
@@ -35,12 +35,16 @@ class Address extends Model
 
     public function setCity($request, $user)
     {
-        self::create($this->getCity($request))->user()->save($user);
+        self::create($this->getAddress($request))->user()->save($user);
     }
 
     public function updateCity($request, $user)
     {
-        self::updateOrCreate($this->getCity($request))->user()->save($user);
+        self::updateOrCreate($this->getAddress($request))->user()->save($user);
     }
 
+    public function setAddress($request)
+    {
+       return  self::create($this->getAddress($request));
+    }
 }

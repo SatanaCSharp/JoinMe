@@ -18,8 +18,7 @@
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Date</th>
-                                <th>Time</th>
+                                <th>Date/Time</th>
                                 <th>Address</th>
                                 <th>Type</th>
                                 <th>Published by</th>
@@ -61,7 +60,7 @@
                                         {{--</td>--}}
 
                                         {{--@empty--}}
-                                            {{--<td class="table__empty" colspan="8">There are no Users!</td>--}}
+                                            {{--<td class="table__empty" colspan="8">There are no events!</td>--}}
                                     {{--</tr>--}}
                                 {{--@endforelse--}}
                                 </tbody>

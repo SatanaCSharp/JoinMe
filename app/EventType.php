@@ -13,4 +13,6 @@ class EventType extends Model
         return $this->hasOne('App\Event');
     }
 
+
+
 }

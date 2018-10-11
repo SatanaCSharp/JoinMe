@@ -1,6 +1,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
 <script src="{{asset('js/admin/now-ui-dashboard.js')}}"></script>
 <script src="{{asset('js/admin/perfect-scrollbar.jquery.min.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeRA7Jo9aBo7E7hrK-XSquHBSKbbkoNuo&libraries=places&callback=initAutocomplete"
@@ -60,4 +63,15 @@
         }
         console.log(autocomplete);
     }
+</script>
+
+
+<script>
+    $('.datepicker').datetimepicker({
+        format:'DD.MM.YYYY h:mm a',
+        formatTime:'h:mm a',
+        formatDate:'DD.MM.YYYY'
+    });
+
+    $.datetimepicker.setDateFormatter('moment');
 </script>

@@ -12,8 +12,8 @@
                     <p>Events</p>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li {{{ (Route::is('event-types.index') ? 'class=active' : '') }}}>
+                <a href="{{route('event-types.index')}}">
                     <i class="fas fa-bookmark"></i>
                     <p>Event types</p>
                 </a>
