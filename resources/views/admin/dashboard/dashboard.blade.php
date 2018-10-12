@@ -218,7 +218,7 @@
                 {{--<div class="card card-plain">--}}
                     {{--<div class="card-header">--}}
                         {{--<h4 class="card-title"> Table on Plain Background</h4>--}}
-                        {{--<p class="category"> Here is a subtitle for this table</p>--}}
+                        {{--<p class="categories"> Here is a subtitle for this table</p>--}}
                     {{--</div>--}}
                     {{--<div class="card-body">--}}
                         {{--<div class="table-responsive">--}}

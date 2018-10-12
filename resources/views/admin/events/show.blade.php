@@ -31,12 +31,12 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <span class="form__event-types">Select type:</span>
+                                <span class="form__event-types">Category:</span>
                                 <div class="form__event-types-radio">
-                                    <label for="{{'event_type_id-'.$event->eventType->id}}">
-                                        {{ Form::radio('event_type_id', $event->eventType->id, true, ['class' => 'option-input radio',
-                                        'id'=>'event-type-'.$event->eventType->id,'disabled'=>'disabled' ]) }}
-                                        {{ $event->eventType->type }}</label>
+                                    <label for="{{'event_type_id-'.$event->category->id}}">
+                                        {{ Form::radio('event_type_id', $event->category->id, true, ['class' => 'option-input radio',
+                                        'id'=>'event-type-'.$event->category->id,'disabled'=>'disabled' ]) }}
+                                        {{ $event->category->category }}</label>
                                 </div>
                             </div>
                         </div>

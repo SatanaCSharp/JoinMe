@@ -12,9 +12,9 @@ class Event extends BootUserModel
         return $this->belongsTo('App\User');
     }
 
-    public function eventType()
+    public function category()
     {
-        return $this->belongsTo('App\EventType');
+        return $this->belongsTo('App\Category');
     }
 
     public function address()
@@ -31,21 +31,21 @@ class Event extends BootUserModel
         ];
     }
 
-    private function getEventType($request)
+    private function getEventCategory($request)
     {
-        return $request->event_type_id;
+        return $request->category_id;
     }
 
     private function setRelationship($request, $event)
     {
         $address = new Address();
-        $eventType = EventType::findOrFail($this->getEventType($request));
-        $event->eventType()->associate($eventType);
+        $category = Category::findOrFail($this->getEventCategory($request));
+        $event->category()->associate($category);
         $event->address()->associate($address->setAddress($request));
     }
     private function deleteRelationship($event)
     {
-        $event->eventType()->dissociate();
+        $event->category()->dissociate();
         $event->address()->dissociate();
     }
 
