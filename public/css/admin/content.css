@@ -345,9 +345,30 @@ input.key {
 .form__event-types-radio .option-input.radio::after {
     border-radius: 50%;
 }
+.table__city {
+    color: #004392;
+}
+.card-body__event-date-time, .card-body__event-user, .card-body__event-description, .card-body__event-address {
+    display: inline-flex;
+    font-size: 16px;
+    font-style: italic;
+    color: #aaa;
+    font-family: unset;
+    font-weight: 400;
+}
 
-
-
-
-
-
+.card-body__event-address {
+    margin-left: 6%;
+}
+.card-body__event-description {
+    margin-left: 4%;
+}
+.card-body__event-description {
+    margin-left: 4%;
+}
+.card-body__event-date-time {
+    margin-left: 2%;
+}
+.card-body__event-user {
+    margin-left: 3%;
+}

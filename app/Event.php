@@ -30,20 +30,37 @@ class Event extends BootUserModel
             'date_time' => $request->date_time,
         ];
     }
+
     private function getEventType($request)
     {
-        return [
-            'event_type_id' => $request->event_type_id
-        ];
+        return $request->event_type_id;
     }
 
-    public function setEvent($request,$event,$address)
+    private function setRelationship($request, $event)
     {
+        $address = new Address();
         $eventType = EventType::findOrFail($this->getEventType($request));
-        $event->fill($this->getEventData($request));
         $event->eventType()->associate($eventType);
-        $event->address()->associate($address);
+        $event->address()->associate($address->setAddress($request));
+    }
+    private function deleteRelationship($event)
+    {
+        $event->eventType()->dissociate();
+        $event->address()->dissociate();
+    }
+
+    public function setEvent($request, $event)
+    {
+        $event->fill($this->getEventData($request));
+        $this->setRelationship($request, $event);
         $event->save();
+    }
+
+
+    public function updateEvent($request, $event)
+    {
+        $this->deleteRelationship($event);
+        $this->setEvent($request, $event);
     }
 
 }

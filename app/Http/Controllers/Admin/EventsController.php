@@ -17,7 +17,9 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('admin.events.index');
+        $perPage = 10;
+        $events = Event::with(['user', 'address', 'eventType'])->paginate($perPage);
+        return view('admin.events.index', ['events' => $events]);
     }
 
     /**
@@ -39,34 +41,9 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-//        $eventType = EventType::findOrFail($request->input('event_type_id'));
-//        $event = new Event();
-//        $event->name = $request->input('name');
-//        $event->description = $request->input('description');
-//        $event->date_time = $request->date_time;
-//
-//        $addressData = [
-//            'city' => $request->input('city'),
-//            'place' => $request->input('place'),
-//        ];
-//
-//        $addresses = Address::where($addressData)->get();
-//
-//        if ($addresses->isNotEmpty()) {
-//            $address = $addresses->first();
-//        } else {
-//            $address = Address::creare($addressData);
-//        }
-
-//        $event->eventType()->associate($eventType);
-//        $event->address()->associate($address);
-//        $event->save();
         $event = new Event();
-        $address = new Address();
-        $event->setEvent($request,$event,$address->setAddress($request));
-        dd($request);
+        $event->setEvent($request, $event);
         return redirect()->route('events.index');
-
     }
 
     /**
@@ -77,7 +54,8 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id)->load(['user', 'address', 'eventType']);
+        return view('admin.events.show', ['event' => $event]);
     }
 
     /**
@@ -88,7 +66,9 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $eventTypes = EventType::get();
+        $event = Event::find($id)->load(['user', 'address', 'eventType']);
+        return view('admin.events.edit', ['event' => $event, 'eventTypes' => $eventTypes]);
     }
 
     /**
@@ -100,7 +80,9 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        $event->updateEvent($request, $event);
+        return redirect()->route('events.index');
     }
 
     /**
@@ -111,6 +93,10 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        $address = new Address();
+        $event->delete();
+        $address->deleteAddress($event->address_id);
+        return redirect()->route('events.index');
     }
 }

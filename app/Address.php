@@ -45,6 +45,11 @@ class Address extends Model
 
     public function setAddress($request)
     {
-       return  self::create($this->getAddress($request));
+        return self::create($this->getAddress($request));
+    }
+
+    public function updateAddress($request, $id)
+    {
+        return self::find($id)->update($this->getAddress($request));
     }
 }

@@ -25,49 +25,45 @@
                                 <th>Actions</th>
                                 </thead>
                                 <tbody>
-                                {{--@forelse($users as $user)--}}
-                                    {{--<tr>--}}
-                                        {{--<td>{{$user->id}}</td>--}}
-                                        {{--<td>{{$user->first_name}}</td>--}}
-                                        {{--<td>{{$user->last_name}}</td>--}}
-                                        {{--<td>{{$user->email}}</td>--}}
-                                        {{--<td>{{$user->phone_number}}</td>--}}
-                                        {{--<td>{{$user->address['city']}}</td>--}}
-                                        {{--<td>--}}
-                                            {{--@forelse($user->roles as $role)--}}
-                                                {{--<span class="table__role"> <i class="far fa-check-circle"></i> {{$role->display_name}}</span>--}}
-                                            {{--@empty--}}
+                                @forelse($events as $event)
+                                    <tr>
+                                        <td>{{$event->id}}</td>
+                                        <td>{{$event->name}}</td>
+                                        <td>{{$event->description}}</td>
+                                        <td>{{$event->date_time}}</td>
+                                        <td>{{$event->address->city}}
+                                            <span class="table__city">{{$event->address->place}}</span>
+                                        </td>
+                                        <td>{{$event->eventType->type}}</td>
+                                        <td>{{$event->user->first_name}}  {{$event->user->last_name}}</td>
+                                        <td>
+                                            <div class="action-buttons__user-action">
+                                                <div class="action-buttons">
 
-                                            {{--@endforelse--}}
-                                        {{--</td>--}}
-                                        {{--<td>--}}
-                                            {{--<div class="action-buttons__user-action">--}}
-                                                {{--<div class="action-buttons">--}}
+                                                    <a href="{{route('events.edit',[$event->id])}}"
+                                                       class="action-buttons__button__edit"><i class="fas fa-edit"></i></a>
 
-                                                    {{--<a href="{{route('users.edit',[$user->id])}}"--}}
-                                                       {{--class="action-buttons__button__edit"><i class="fas fa-edit"></i></a>--}}
+                                                    <a href="{{route('events.show',[$event->id])}}"
+                                                       class="action-buttons__button__show"><i
+                                                                class="far fa-eye"></i></a>
 
-                                                    {{--<a href="{{route('users.show',[$user->id])}}"--}}
-                                                       {{--class="action-buttons__button__show"><i--}}
-                                                                {{--class="far fa-eye"></i></a>--}}
+                                                    {!! Form::open(['method'=>'DELETE', 'route'=>['events.destroy',$event->id]]) !!}
+                                                    <button type="submit" class="action-buttons__button__delete"><i
+                                                                class="fas fa-trash-alt"></i></button>
+                                                    {!! Form::close(); !!}
+                                                </div>
+                                            </div>
+                                        </td>
 
-                                                    {{--{!! Form::open(['method'=>'DELETE', 'route'=>['users.destroy',$user->id]]) !!}--}}
-                                                    {{--<button type="submit" class="action-buttons__button__delete"><i--}}
-                                                                {{--class="fas fa-trash-alt"></i></button>--}}
-                                                    {{--{!! Form::close(); !!}--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
-
-                                        {{--@empty--}}
-                                            {{--<td class="table__empty" colspan="8">There are no events!</td>--}}
-                                    {{--</tr>--}}
-                                {{--@endforelse--}}
+                                        @empty
+                                            <td class="table__empty" colspan="8">There are no events!</td>
+                                    </tr>
+                                @endforelse
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    {{--<div class="card-body__pagination">{{ $users->links() }}</div>--}}
+                    <div class="card-body__pagination">{{ $events->links() }}</div>
                 </div>
             </div>
         </div>
