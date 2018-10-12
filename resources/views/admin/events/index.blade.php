@@ -34,7 +34,7 @@
                                         <td>{{$event->address->city}}
                                             <span class="table__city">{{$event->address->place}}</span>
                                         </td>
-                                        <td>{{$event->eventType->type}}</td>
+                                        <td>{{$event->category->category}}</td>
                                         <td>{{$event->user->first_name}}  {{$event->user->last_name}}</td>
                                         <td>
                                             <div class="action-buttons__user-action">

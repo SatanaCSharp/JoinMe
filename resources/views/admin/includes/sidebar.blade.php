@@ -12,10 +12,10 @@
                     <p>Events</p>
                 </a>
             </li>
-            <li {{{ (Route::is('event-types.index') ? 'class=active' : '') }}}>
-                <a href="{{route('event-types.index')}}">
+            <li {{{ (Route::is('categories.index') ? 'class=active' : '') }}}>
+                <a href="{{route('categories.index')}}">
                     <i class="fas fa-bookmark"></i>
-                    <p>Event types</p>
+                    <p>Categories</p>
                 </a>
             </li>
             <li {{{ (Route::is('users.index') ? 'class=active' : '') }}}>

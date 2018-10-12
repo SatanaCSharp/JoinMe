@@ -29,12 +29,13 @@
                         {{  Form::text('date_time',$event->date_time, array_merge(['class' => 'form-control datepicker'])) }}
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
-                                <span class="form__event-types">Select type:</span>
+                                <span class="form__event-types">Select category:</span>
                                 <div class="form__event-types-radio">
-                                    @foreach($eventTypes as $eventType)<label for="{{'event_type_id-'.$eventType->id}}">
-                                        {{ Form::radio('event_type_id', $eventType->id, ($eventType->id ==$event->event_type_id)?true:false,
-                                        ['class' => 'option-input radio','id'=>'event-type-'.$eventType->id]) }}
-                                        {{ $eventType->type }}</label>
+                                    @foreach($categories as $category)
+                                        <label for="{{'category_id-'.$category->id}}">
+                                        {{ Form::radio('category_id', $category->id, ($category->id ==$event->category_id)?true:false,
+                                        ['class' => 'option-input radio','id'=>'event-type-'.$category->id]) }}
+                                        {{ $category->category }}</label>
                                     @endforeach
                                 </div>
                             </div>

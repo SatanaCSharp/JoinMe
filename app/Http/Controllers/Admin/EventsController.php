@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Address;
+use App\Category;
 use App\Event;
 use App\EventType;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class EventsController extends Controller
     public function index()
     {
         $perPage = 10;
-        $events = Event::with(['user', 'address', 'eventType'])->paginate($perPage);
+        $events = Event::with(['user', 'address', 'category'])->paginate($perPage);
         return view('admin.events.index', ['events' => $events]);
     }
 
@@ -29,8 +30,8 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $eventTypes = EventType::get();
-        return view('admin.events.create', ['eventTypes' => $eventTypes]);
+        $categories = Category::get();
+        return view('admin.events.create', ['categories' => $categories]);
     }
 
     /**
@@ -54,7 +55,7 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event = Event::find($id)->load(['user', 'address', 'eventType']);
+        $event = Event::find($id)->load(['user', 'address', 'category']);
         return view('admin.events.show', ['event' => $event]);
     }
 
@@ -66,9 +67,9 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $eventTypes = EventType::get();
-        $event = Event::find($id)->load(['user', 'address', 'eventType']);
-        return view('admin.events.edit', ['event' => $event, 'eventTypes' => $eventTypes]);
+        $categories = Category::get();
+        $event = Event::find($id)->load(['user', 'address', 'category']);
+        return view('admin.events.edit', ['event' => $event, 'categories' => $categories]);
     }
 
     /**
