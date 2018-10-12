@@ -6,10 +6,16 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav" id="active-side-bar">
-            <li>
-                <a href="#">
+            <li {{{ (Route::is('events.index') ? 'class=active' : '') }}}>
+                <a href="{{route('events.index')}}">
                     <i class="fas fa-bullhorn"></i>
                     <p>Events</p>
+                </a>
+            </li>
+            <li {{{ (Route::is('event-types.index') ? 'class=active' : '') }}}>
+                <a href="{{route('event-types.index')}}">
+                    <i class="fas fa-bookmark"></i>
+                    <p>Event types</p>
                 </a>
             </li>
             <li {{{ (Route::is('users.index') ? 'class=active' : '') }}}>
