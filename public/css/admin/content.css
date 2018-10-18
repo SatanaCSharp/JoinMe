@@ -372,3 +372,26 @@ input.key {
 .card-body__event-user {
     margin-left: 3%;
 }
+.button-participate, .button-leave {
+    padding: 5px;
+    background-color: #1dab2f;
+    color: #fff;
+    border-radius: 50px;
+    border: none;
+}
+.button-participate:hover{
+    background-color: #24d43a;
+    color: #fff;
+    text-decoration: none;
+}
+.button-leave {
+    background-color: #cc0900;
+    visibility: hidden;
+}
+.button-leave:hover {
+    background-color: #ec0900;
+    color: #fff;
+    text-decoration: none;
+
+}
+

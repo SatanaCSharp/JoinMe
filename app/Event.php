@@ -31,6 +31,12 @@ class Event extends BootUserModel
         ];
     }
 
+    public function participants()
+    {
+        return $this->hasMany('App\Participant');
+    }
+
+
     private function getEventCategory($request)
     {
         return $request->category_id;

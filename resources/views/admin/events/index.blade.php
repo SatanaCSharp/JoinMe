@@ -22,6 +22,7 @@
                                 <th>Address</th>
                                 <th>Type</th>
                                 <th>Published by</th>
+                                <th>Participate</th>
                                 <th>Actions</th>
                                 </thead>
                                 <tbody>
@@ -36,6 +37,11 @@
                                         </td>
                                         <td>{{$event->category->category}}</td>
                                         <td>{{$event->user->first_name}}  {{$event->user->last_name}}</td>
+                                        <td>
+                                            <button class="button-participate"><i class="fas fa-plus-circle"></i>Participate</button>
+                                            <button href="#" class="button-leave"><i
+                                                        class="fas fa-minus-circle"></i>Leave</button>
+                                        </td>
                                         <td>
                                             <div class="action-buttons__user-action">
                                                 <div class="action-buttons">
