@@ -22,6 +22,11 @@ class Event extends BootUserModel
         return $this->belongsTo('App\Address');
     }
 
+    public function participants()
+    {
+        return $this->hasMany('App\Participant');
+    }
+
     private function getEventData($request)
     {
         return [
@@ -30,6 +35,7 @@ class Event extends BootUserModel
             'date_time' => $request->date_time,
         ];
     }
+
 
     private function getEventCategory($request)
     {

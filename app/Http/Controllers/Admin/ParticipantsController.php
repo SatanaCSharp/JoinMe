@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Address;
-use App\Category;
-use App\Event;
-use App\EventType;
+use App\Participant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class EventsController extends Controller
+class ParticipantsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +17,8 @@ class EventsController extends Controller
     public function index()
     {
         $perPage = 10;
-        $events = Event::with(['user', 'address', 'category','participants'])->paginate($perPage);
-        return view('admin.events.index', ['events' => $events]);
+        $participants = Participant::with(['events','users'])->paginate($perPage);
+        return view('admin.participants.index',['participants'=>$participants]);
     }
 
     /**
@@ -30,8 +28,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        return view('admin.events.create', ['categories' => $categories]);
+        //
     }
 
     /**
@@ -40,10 +37,9 @@ class EventsController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $event = new Event();
-        $event->setEvent($request, $event);
+        Participant::create(['event_id' => $id]);
         return redirect()->route('events.index');
     }
 
@@ -55,8 +51,7 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event = Event::find($id)->load(['user', 'address', 'category']);
-        return view('admin.events.show', ['event' => $event]);
+        //
     }
 
     /**
@@ -67,9 +62,7 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::get();
-        $event = Event::find($id)->load(['user', 'address', 'category']);
-        return view('admin.events.edit', ['event' => $event, 'categories' => $categories]);
+        //
     }
 
     /**
@@ -81,9 +74,7 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $event = Event::find($id);
-        $event->updateEvent($request, $event);
-        return redirect()->route('events.index');
+        //
     }
 
     /**
@@ -94,11 +85,9 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        $event = Event::findOrFail($id);
-        $address = new Address();
-        $event->participants()->delete();
-        $event->delete();
-        $address->deleteAddress($event->address_id);
-        return redirect()->route('events.index');
+        $userId = Auth::id();
+        $participant = Participant::where(['user_id'=>$userId,'event_id'=>$id]);
+        $participant->delete();
+        return redirect()->back();
     }
 }

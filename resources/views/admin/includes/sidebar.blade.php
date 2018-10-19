@@ -30,8 +30,9 @@
                     <p>Roles</p>
                 </a>
             </li>
-            <li>
-                <a href="#">
+
+            <li {{{ (Route::is('participants.index') ? 'class=active' : '') }}}>
+                <a href="{{route('participants.index')}}">
                     <i class="fas fa-user-check"></i>
                     <p>Participants</p>
                 </a>
