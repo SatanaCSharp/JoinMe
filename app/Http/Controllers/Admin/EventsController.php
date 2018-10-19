@@ -19,7 +19,7 @@ class EventsController extends Controller
     public function index()
     {
         $perPage = 10;
-        $events = Event::with(['user', 'address', 'category'])->paginate($perPage);
+        $events = Event::with(['user', 'address', 'category','participants'])->paginate($perPage);
         return view('admin.events.index', ['events' => $events]);
     }
 
@@ -96,6 +96,7 @@ class EventsController extends Controller
     {
         $event = Event::findOrFail($id);
         $address = new Address();
+        $event->participants()->delete();
         $event->delete();
         $address->deleteAddress($event->address_id);
         return redirect()->route('events.index');

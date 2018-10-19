@@ -386,7 +386,7 @@ input.key {
 }
 .button-leave {
     background-color: #cc0900;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 .button-leave:hover {
     background-color: #ec0900;

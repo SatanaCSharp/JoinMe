@@ -17,6 +17,14 @@ class CreateParticipantsTable extends Migration
             $table->increments('id');
             $table->timestamps();
         });
+        Schema::table('participants',function (Blueprint $table){
+            $table->integer('event_id')->unsigned();
+            $table->foreign('event_id')->references('id')->on('events');
+        });
+        Schema::table('participants',function (Blueprint $table){
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -26,6 +34,10 @@ class CreateParticipantsTable extends Migration
      */
     public function down()
     {
+        Schema::table('participants', function($table)
+        {
+            $table->dropForeign(['event_id','user_id']);
+        });
         Schema::dropIfExists('participants');
     }
 }

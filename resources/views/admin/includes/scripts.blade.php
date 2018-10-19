@@ -71,20 +71,20 @@
         format:'DD.MM.YYYY h:mm a',
         formatTime:'h:mm a',
         formatDate:'DD.MM.YYYY'
-    })
+    });
     $.datetimepicker.setDateFormatter('moment');
 </script>
 
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.button-participate', function (event) {
-            $(".button-participate").css('visibility','hidden');
-            $(".button-leave").css('visibility','visible');
-        });
-        $(document).on('click', '.button-leave', function (event) {
-            $(".button-leave").css('visibility','hidden');
-            $(".button-participate").css('visibility','visible');
+{{--<script>--}}
+    {{--$(document).ready(function() {--}}
+        {{--$(document).on('click', '.button-participate', function (event) {--}}
+            {{--$(".button-participate").css('visibility','hidden');--}}
+            {{--$(".button-leave").css('visibility','visible');--}}
+        {{--});--}}
+        {{--$(document).on('click', '.button-leave', function (event) {--}}
+            {{--$(".button-leave").css('visibility','hidden');--}}
+            {{--$(".button-participate").css('visibility','visible');--}}
 
-        });
-    });
-</script>
+        {{--});--}}
+    {{--});--}}
+{{--</script>--}}

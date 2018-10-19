@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Participant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ParticipantsController extends Controller
 {
@@ -14,7 +16,9 @@ class ParticipantsController extends Controller
      */
     public function index()
     {
-        //
+        $perPage = 10;
+        $participants = Participant::with(['events','users'])->paginate($perPage);
+        return view('admin.participants.index',['participants'=>$participants]);
     }
 
     /**
@@ -30,18 +34,19 @@ class ParticipantsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request, $id)
     {
-
+        Participant::create(['event_id' => $id]);
+        return redirect()->route('events.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +57,7 @@ class ParticipantsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +68,8 @@ class ParticipantsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,11 +80,14 @@ class ParticipantsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $userId = Auth::id();
+        $participant = Participant::where(['user_id'=>$userId,'event_id'=>$id]);
+        $participant->delete();
+        return redirect()->back();
     }
 }

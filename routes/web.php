@@ -25,6 +25,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('/events','EventsController');
     Route::resource('/categories','CategoriesController');
     Route::resource('/participants','ParticipantsController')->only(['index']);
-    Route::post('/participant/{id}','ParticipantsController@store')->name('participate');
-    Route::delete('/participant/{id}','ParticipantsController@destroy')->name('leave');
+    Route::post('/participant/{id}','ParticipantsController@store')->name('participant.store');
+    Route::delete('/participant/{id}','ParticipantsController@destroy')->name('participant.delete');
 });
