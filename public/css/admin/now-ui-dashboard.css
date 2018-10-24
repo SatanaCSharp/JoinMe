@@ -5345,4 +5345,14 @@ Created using IcoMoon - icomoon.io
   }
 }
 
+
+.user-drop_down .dropdown-menu.dropdown-menu-right.show {
+  margin-right: 4%;
+  top: 85%;
+}
+.user-drop_down .dropdown-item i{
+  font-size: 15px;
+  color: #f96332;
+  margin-left: 15%;
+}
 /*# sourceMappingURL=dashboard-free.css.map */

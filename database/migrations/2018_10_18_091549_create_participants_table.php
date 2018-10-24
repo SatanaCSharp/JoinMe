@@ -15,6 +15,7 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('is_participated')->default(false);
             $table->timestamps();
         });
         Schema::table('participants',function (Blueprint $table){
