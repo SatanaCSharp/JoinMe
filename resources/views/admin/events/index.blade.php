@@ -38,22 +38,8 @@
                                         <td>{{$event->category->category}}</td>
                                         <td>{{$event->user->first_name}}  {{$event->user->last_name}}</td>
                                         <td>
-
-                                            {!! Form::open(['method'=>'DELETE', 'route'=>['participant.delete',$event->id]]) !!}
-                                            <button type="submit" class="button-leave">
-                                                <i class="fas fa-minus-circle"></i>
-                                                Leave
-                                            </button>
-                                            {!! Form::close(); !!}
-
-                                            {!! Form::open(['method'=>'post', 'route'=>['participant.store',$event->id]]) !!}
-                                            <button type="submit" class="button-participate">
-                                                <i class="fas fa-plus-circle"></i>
-                                                Participate
-                                            </button>
-                                            {!! Form::close(); !!}
-
-
+                                            @include('admin.includes.leave')
+                                            @include('admin.includes.participate')
                                         </td>
                                         <td>
                                             <div class="action-buttons__user-action">

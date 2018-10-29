@@ -6,6 +6,7 @@ use App\Address;
 use App\Category;
 use App\Event;
 use App\EventType;
+use App\Participant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,8 @@ class EventsController extends Controller
     {
         $perPage = 10;
         $events = Event::with(['user', 'address', 'category','participants'])->paginate($perPage);
-        return view('admin.events.index', ['events' => $events]);
+        $authParticipant = Auth()->user()->load('participants');
+        return view('admin.events.index', ['events' => $events,'authParticipant'=>$authParticipant]);
     }
 
     /**
