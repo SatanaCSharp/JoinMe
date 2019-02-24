@@ -263,7 +263,7 @@ input.key {
     margin-top: 15px;
     color: #7d7d7d;
 }
-.form__event-types-radio{
+.form__event-types-radio, .is-participated{
     display:flex;
     flex-direction: column;
 }
@@ -283,7 +283,7 @@ input.key {
     }
 }
 
-.form__event-types-radio .option-input {
+.form__event-types-radio .option-input, .is-participated .option-input{
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
@@ -308,15 +308,15 @@ input.key {
     z-index: 1000;
 }
 
-.form__event-types-radio .option-input:hover {
+.form__event-types-radio .option-input:hover, .is-participated .option-input:hover{
     background: #fcb199;
 }
 
-.form__event-types-radio .option-input:checked {
+.form__event-types-radio .option-input:checked,.is-participated .option-input:checked{
     background: #f96332;
 }
 
-.form__event-types-radio .option-input:checked::before {
+.form__event-types-radio .option-input:checked::before,.is-participated .option-input:checked::before{
     height: 25px;
     width: 25px;
     position: absolute;
@@ -327,7 +327,7 @@ input.key {
     line-height: 27px;
 }
 
-.form__event-types-radio .option-input:checked::after {
+.form__event-types-radio .option-input:checked::after,.is-participated .option-input:checked::after{
     -webkit-animation: click-wave 0.65s;
     -moz-animation: click-wave 0.65s;
     animation: click-wave 0.65s;
@@ -338,7 +338,7 @@ input.key {
     z-index: 100;
 }
 
-.form__event-types-radio .option-input.radio {
+.form__event-types-radio .option-input.radio,.is-participated .option-input.radio {
     border-radius: 50%;
 }
 
@@ -394,4 +394,15 @@ input.key {
     text-decoration: none;
 
 }
-
+.action-buttons__button__add, .action-buttons__button__leave {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #f96332;
+}
+.action-buttons__button__add:hover {
+    color: #03c300;
+}
+.action-buttons__button__leave:hover{
+    color: #ccc400;
+}

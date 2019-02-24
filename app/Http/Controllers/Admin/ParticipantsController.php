@@ -17,8 +17,8 @@ class ParticipantsController extends Controller
     public function index()
     {
         $perPage = 10;
-        $participants = Participant::with(['events','users'])->paginate($perPage);
-        return view('admin.participants.index',['participants'=>$participants]);
+        $participants = Participant::with(['events', 'users'])->paginate($perPage);
+        return view('admin.participants.index', ['participants' => $participants]);
     }
 
     /**
@@ -39,7 +39,7 @@ class ParticipantsController extends Controller
      */
     public function store(Request $request, $id)
     {
-        Participant::create(['event_id' => $id]);
+
         return redirect()->route('events.index');
     }
 
@@ -74,7 +74,8 @@ class ParticipantsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        return redirect()->back();
     }
 
     /**
@@ -85,9 +86,6 @@ class ParticipantsController extends Controller
      */
     public function destroy($id)
     {
-        $userId = Auth::id();
-        $participant = Participant::where(['user_id'=>$userId,'event_id'=>$id]);
-        $participant->delete();
         return redirect()->back();
     }
 }

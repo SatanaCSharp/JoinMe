@@ -20,7 +20,7 @@
                         {{  Form::textarea('description',$event->description, array_merge(['class' => 'form-control','required' => 'required'])) }}
 
                         {{  Form::label('city', 'Event City')}}
-                        <input class="form-control" type="text" id="city" name="city" value="{{$event->address->city}}"
+                        <input class="form-control"  type="text" id="city" name="city" value="{{$event->address->city}}"
                                placeholder=" " autocomplete="on"
                                required>
                         {{  Form::label('place', 'Event Place')}}
