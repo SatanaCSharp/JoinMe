@@ -22,7 +22,6 @@
                                 <th>Address</th>
                                 <th>Type</th>
                                 <th>Published by</th>
-                                <th>Participate</th>
                                 <th>Actions</th>
                                 </thead>
                                 <tbody>
@@ -37,10 +36,6 @@
                                         </td>
                                         <td>{{$event->category->category}}</td>
                                         <td>{{$event->user->first_name}}  {{$event->user->last_name}}</td>
-                                        <td>
-                                            @include('admin.includes.leave')
-                                            @include('admin.includes.participate')
-                                        </td>
                                         <td>
                                             <div class="action-buttons__user-action">
                                                 <div class="action-buttons">

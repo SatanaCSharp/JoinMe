@@ -17,6 +17,7 @@ class CategoriesController extends Controller
     {
         $perPage = 10;
         $categories = Category::paginate($perPage);
+
         return view('admin.categories.index', ['categories' => $categories]);
 
     }
